@@ -1,3 +1,9 @@
+---
+layout: post
+title: "Using docker and mamba without tears"
+categories: mamba docker
+---
+
 # Using docker and mamba without tears
 If you are here, you probably know what conda is (open-source package management system and environment management system). This means that you can use it to create virtual _environments_ and install packages within, also conda will take care of interdependencies of the packages. If a package is not available on conda channels you can use pip to install packages.
 
