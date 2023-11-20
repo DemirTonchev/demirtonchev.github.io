@@ -7,9 +7,9 @@ author:
 - Me
 ---
 
-If you are here, you probably know what conda is (open-source package management system and environment management system). This means that you can use it to create virtual _environments_ and install packages within, also conda will take care of interdependencies of the packages. If a package is not available on conda channels you can use pip to install packages.
+If you are here, you probably know what conda is (open-source package management system and environment management system). This means that you can use it to _create_ virtual environments and _install_ packages within, also conda will take care of interdependencies of the packages. If a package is not available on conda channels you can always resolve to pip to install it.
 
-So I would say conda(miniconda3) is good but I recommend againts it - if you dont want to look at a terminal spinner for hours(If you ever experienced a painfully slow install with conda you will know.) you should use [mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html).
+So conda(miniconda3) is good but I recommend againts it - if you dont want to look at a terminal spinner for hours(If you ever experienced a painfully slow install with conda you will know.) you should use [mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html).
 **Mamba** is the same as conda but better – what you care about – faster install times. Now when you want to use a docker image that runs some job/task/script.
 Using conda could be a bit of a trouble – this dude explains it - https://kevalnagda.github.io/conda-docker-tutorial. But why not use `pip3 install -r requirements.txt`?!? And be done with our lives.. Because I dont like pip ok?!
 And pip tends to do some weird shit especially when you need to install pytorch with cuda support or you already have installed pytorch and need to install transformers and pip decides to remove and reinstall the same version and fucking up stuff in the process?!?! K .
