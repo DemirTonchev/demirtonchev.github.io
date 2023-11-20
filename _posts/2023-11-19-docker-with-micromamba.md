@@ -1,10 +1,12 @@
 ---
 layout: post
 title: "Using docker and mamba without tears"
-categories: mamba, docker
+categories: MLeng
+tags: mamba docker
+author:
+- Me
 ---
 
-# Using docker and mamba without tears
 If you are here, you probably know what conda is (open-source package management system and environment management system). This means that you can use it to create virtual _environments_ and install packages within, also conda will take care of interdependencies of the packages. If a package is not available on conda channels you can use pip to install packages.
 
 So I would say conda(miniconda3) is good but I recommend againts it - if you dont want to look at a terminal spinner for hours(If you ever experienced a painfully slow install with conda you will know.) you should use [mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html).
