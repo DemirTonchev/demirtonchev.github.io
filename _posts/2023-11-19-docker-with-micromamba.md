@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Using docker and mamba without tears"
-categories: mamba docker
+categories: mamba, docker
 ---
 
 # Using docker and mamba without tears
