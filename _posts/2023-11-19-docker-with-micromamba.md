@@ -30,7 +30,7 @@ micromamba install -n base numpy -c conda-forge
 ```
 Is OK. 
 
-When you want to run something within the image with **activated base environment** the easiest approach is to just use the mamba base image like so:
+When you want to run something within the image with **activated base environment** the easiest approach is to just use the micromamba base image like so:
 ```Dockerfile
 FROM mambaorg/micromamba:latest
 
@@ -49,3 +49,12 @@ RUN micromamba install -y -n base -f env.yml
 
 CMD ["python", "do_stuff.py"]
 ```
+
+Next just build and run the container. 
+```sh
+docker build .......asdsdasd 
+docker run -rm ....
+```
+And do_stuff.py will run, my "do_stuff.py" just prints if cuda is available for this image the answer is False. 
+
+Now if you want to do something more complicated or need other base images, for example I usually need to use tghe GPU
