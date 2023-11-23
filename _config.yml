@@ -1,5 +1,7 @@
 title: Opionated DS and ML 
-
+author:
+  name: DemirTonchev
+  
 # The `>` after `description:` means to ignore line-breaks until next key.
 # If you want to omit the line-break after the end of text, use `>-` instead.
 description: >
@@ -12,5 +14,9 @@ remote_theme: jekyll/minima
 
 show_excerpts: true
 
+header_pages:
+  - about.md
+  
 plugins:
+  - jekyll-feed
   - jekyll-seo-tag
