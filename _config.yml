@@ -20,3 +20,7 @@ header_pages:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+
+#social_links:
+   - { platform: github,         user_url: "https://github.com/DemirTonchev" }
+  #  - { platform: linkedin,       user_url: "https://www.linkedin.com/in/jekyll" }
