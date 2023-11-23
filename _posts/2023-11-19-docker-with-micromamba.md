@@ -7,7 +7,7 @@ author:
 - Me
 ---
 
-If you are here, you probably know what conda is (open-source package management system and environment management system). This means that you can use it to _create_ virtual environments and _install_ packages within, also conda will take care of interdependencies of the packages. If a package is not available on conda channels you can always resolve to pip to install it.
+If you are here, you probably know what conda is (open-source package management system and environment management system). This means that you can use it to create_ virtual environments and _install_ packages within, also conda will take care of interdependencies of the packages. If a package is not available on conda channels you can always resolve to pip to install it.
 
 So conda(miniconda3) is good but I recommend againts it - if you dont want to look at a terminal spinner for hours(If you ever experienced a painfully slow install with conda you will know.) you should use [mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html).
 **Mamba** is the same as conda but better – what you care about – faster install times. Now when you want to use a docker image that runs some job/task/script.
@@ -37,8 +37,8 @@ FROM mambaorg/micromamba:latest
 # just add link to docs
 #ARG MAMBA_DOCKERFILE_ACTIVATE=1
 
-# you can either add channels here and save the options to .condarc
-RUN micromamba config append channels conda-forge --env 
+# you can either add channels here and save the options to .condarc or use env.yml
+# RUN micromamba config append channels conda-forge --env 
 
 WORKDIR /embed_pipe
 COPY --chown=$MAMBA_USER:$MAMBA_USER . .
@@ -55,6 +55,7 @@ Next just build and run the container.
 docker build .......asdsdasd 
 docker run -rm ....
 ```
-And do_stuff.py will run, my "do_stuff.py" just prints if cuda is available for this image the answer is False. 
+And do_stuff.py will run, my "do_stuff.py" just prints if cuda is available for this container the answer is False. 
 
-Now if you want to do something more complicated or need other base images, for example I usually need to use tghe GPU
+Now if you want to do something more complicated or need functionallity from other base images, for example you want to run the fanciest LLMs on a container with GPU.
+
