@@ -141,5 +141,6 @@ CMD ["python", "do_stuff.py"]
 
 Now after building and running the container we should get "Cuda available", and thus we can use the GPU. Now you just need to replace this do_stuff with your do_stuff.
 
-If you want to use this docker with `exec` command then you will need to activate the environment. But the canonical use case is to run it as a service in this case this means only **one environment** per docker image. But then why spent so much effort using mambas env ? Convenience mostly and getting the right packages and version, even better to use conda-lock files. I have always been using conda/mamba for envs and packages and my experience has been positive espeacially when something compiled is needed as torch-cuda version. 
+If you want to use this docker with `exec` command then you will need to activate the environment. But the canonical use case is to run it as a service that does something specific. In this case this means only **one (base) environment** per docker image. But then why spent so much effort using mambas env? Convenience and speed mostly and getting the right packages and version, if you want to be really punctual you can use conda-lock files. Also your development env.yml(you don't install everythign in base right? RIGHT?) is directly usable for the docker, meaning you would get the same results as per dev/experimentation. 
 
+I have always been using conda/mamba for envs and packages and my experience has been positive espeacially when something compiled is needed as pytorch-cuda version. 
