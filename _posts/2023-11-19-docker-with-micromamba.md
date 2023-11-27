@@ -5,8 +5,6 @@ categories: MLeng
 tags: mamba docker
 author:
 - Me
-date:               2023-12-01 00:00:00
-last_modified_at:   2019-03-25 8:30:00
 ---
 
 
