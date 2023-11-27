@@ -5,9 +5,12 @@ categories: MLeng
 tags: mamba docker
 author:
 - Me
+date:               2023-12-01 00:00:00
+last_modified_at:   2019-03-25 8:30:00
 ---
 
-If you are here, you probably know what [conda](https://docs.conda.io/en/latest/) is (open-source package manager and environment manager). This means that you can use it to create_ virtual environments and _install_ packages within, also conda will take care of interdependencies of the packages. If a package is not available on conda channels you can always resolve to pip to install it.
+
+If you are here, you probably know what [conda](https://docs.conda.io/en/latest/) is (open-source package manager and environment manager). This means that you can use it to _create_ virtual environments and _install_ packages within, also conda will take care of interdependencies of the packages. If a package is not available on conda channels you can always resolve to pip to install it.
 
 So conda(miniconda) is pretty good stuff but I recommend againts it - if you dont want to look at a terminal spinner for hours while installing something (and have time to contemplate the absurd) you should use [mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html).
 **Mamba** is the same as conda but better – regarding what you care about – faster install times and has venom to deal with the pesky rodents. 
