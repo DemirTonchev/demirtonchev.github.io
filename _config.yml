@@ -23,7 +23,7 @@ plugins:
 
 future: true
 
-excerpt_ separator: <!--more-->
+excerpt_separator: <!--more-->
 
 social_links:
   - { platform: github,         user_url: "https://github.com/DemirTonchev" }
