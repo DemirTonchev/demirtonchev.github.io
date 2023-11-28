@@ -153,6 +153,6 @@ And that's it now you can use micromamba with docker with GPU. No tears as promi
 
 
 <sub> PS.
-If you wonder that to do next check this envelope problem for fun - [https://en.wikipedia.org/wiki/Two_envelopes_problem](https://en.wikipedia.org/wiki/Two_envelopes_problem) </sub>
+If you wonder what to do next check this envelope problem for fun - [https://en.wikipedia.org/wiki/Two_envelopes_problem](https://en.wikipedia.org/wiki/Two_envelopes_problem) </sub>
 
 
