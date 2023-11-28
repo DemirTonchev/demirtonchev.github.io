@@ -3,7 +3,6 @@ layout: post
 title: "Using docker and mamba without tears"
 categories: MLeng
 tags: mamba docker
-date: 2023-11-30
 author:
 - Me
 ---
