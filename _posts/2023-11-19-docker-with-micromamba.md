@@ -8,37 +8,35 @@ author:
 ---
 
 
-If you are here, you probably know what [conda](https://docs.conda.io/en/latest/) is (open-source package manager and environment manager). This means that you can use it to _create_ virtual environments and _install_ packages within, also conda will take care of interdependencies of the packages. If a package is not available on conda channels you can always resolve to pip to install it.
+If you are here, you probably know what [conda](https://docs.conda.io/en/latest/) is (open-source package manager and environment manager). This means that you can use it to _create_ virtual environments and _install_ packages within, also conda will take care of interdependencies of the packages and you won't get some nasty error. If a package is not available on conda channels you can always resolve to pip to install it.
 
+### mamba
 So conda(miniconda) is pretty good stuff but I recommend againts it - if you dont want to look at a terminal spinner for hours while installing something (and have time to contemplate the absurd) you should use [mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html).
-**Mamba** is the same as conda but better – regarding what you care about – faster install times and has venom to deal with the pesky rodents. 
+**Mamba** is the same as conda but better – regarding what you care about – faster install times and has venom to deal with the pesky rodents. Mamba supports most of the conda commands, so if you know conda you know mamba. If you dont know conda look at the documentation (but let's be honest no one reads documentaion and you will look at stackoverflow or ask chatGPT).
 
-Now when you want to use a docker image that runs some job/task/script. 
-Using conda could be a bit of a trouble – this dude explains it - https://kevalnagda.github.io/conda-docker-tutorial. But why not use `pip3 install -r requirements.txt`?!? And be done with our lives.. Because I dont like pip ok?!
-And pip tends to do some weird shit especially when you need to install pytorch with cuda support or you already have installed pytorch and need to install transformers and pip decides to remove and reinstall the same version and fucking up stuff in the process?!?! K .
-Back to the docker issue. So now that you know that you should use mamba(I know poetry is super cool but we are data sciencing here), regarding docker containers the best experience is using 
+But you are here because you want to use a docker image that runs some script/program. 
+Using conda could be a bit of a trouble – this dude explains some of the pain [https://kevalnagda.github.io/conda-docker-tutorial](https://kevalnagda.github.io/conda-docker-tutorial). But why not use `pip3 install -r requirements.txt`?!? And be done with our lives.. Because I dont like pip ok?!
+And pip tends to do some weird stuff especially when you need to install pytorch with cuda support or you already have installed pytorch and need to install transformers and pip decides to remove and reinstall the same version of pytorch fucking up stuff in the process?!?! **K**.
+Back to the docker issue. So now that you know that you should use mamba in general(I know poetry is super cool but we are data sciencing here), regarding docker containers the best experience is using 
 [micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html) 
 
 **WUT ONE MORE SNEK**,
 
-yes, micromamba is even lighter version of mamba which comes even without pesky python in the “base” environment and no channels preconfigured (essentially no .condarc/.mambarc). What this means is running 
+yes, micromamba is even lighter version of mamba which comes even without python in the “base” environment and no channels preconfigured (essentially no .condarc/.mambarc). What this means is running 
 
 ```sh
 micromamba install -n base numpy
 ```
 
-Will throw error complaining that that no channel was specified but 
+will throw error complaining that that no channel was specified but 
 ```sh
 micromamba install -n base numpy -c conda-forge
 ```
-Is OK. 
+is OK. 
 
 When you want to run something within the image with **activated base environment** the easiest approach is to just use the micromamba base image like so:
 ```Dockerfile
 FROM mambaorg/micromamba:latest
-
-# just add link to docs
-#ARG MAMBA_DOCKERFILE_ACTIVATE=1
 
 # you can either add channels here and save the options to .condarc or use env.yml
 # RUN micromamba config append channels conda-forge --env 
@@ -78,18 +76,19 @@ if cuda_available:
     print('CUDA available')
     print(torch.cuda.mem_get_info())
     arr = torch.rand((3000,3000), device=device)
+    print(torch.cuda.mem_get_info())
 else:
     print('CUDA not available')
     arr = torch.rand((3000,3000), device=device)
 
 ```
 
-Next just build and run the container. 
+next just build and run the container. 
 ```sh
 docker build -t nocuda -f Dockerfile
 docker run -rm nocuda
 ```
-And do_stuff.py will run, my "do_stuff.py" just prints if cuda is available for this container the answer is False. 
+and do_stuff.py will run, my "do_stuff.py" just prints if CUDA is available for this container the answer is False. 
 
 Now if you want to do something more complicated or need functionallity from other base images, for example you want to run the fanciest LLMs in a container with GPU and brag about it on meetups or even better put a "Generative AI expert" on your Linkedin. The trick is to use the micro snake again but with the addition of nvidia image with needed drivers. If running on VM the host machine needs to have same NVIDIA drivers and NVIDIA Container Toolkit. 
 
@@ -139,9 +138,17 @@ RUN micromamba install -y -n base -f env.yml && \
 
 CMD ["python", "do_stuff.py"]
 ```
+The only difference is at runtime
 
-Now after building and running the container we should get "Cuda available", and thus we can use the GPU. Now you just need to replace this do_stuff with your do_stuff.
+```sh
+docker build -t yescuda -f Dockerfile
+docker run --gpus all -t yescuda
+```
+After building and running the container we should get "Cuda available", and thus we can use the GPU. Now you just need to replace this do_stuff with your do_stuff.
 
-If you want to use this docker with `exec` command then you will need to activate the environment. But the canonical use case is to run it as a service that does something specific. In this case this means only **one (base) environment** per docker image. But then why spent so much effort using mambas env? Convenience and speed mostly and getting the right packages and version, if you want to be really punctual you can use conda-lock files. Also your development env.yml(you don't install everythign in base right? RIGHT?) is directly usable for the docker, meaning you would get the same results as per dev/experimentation. 
+If you want to use this docker with `exec` command then you will need to activate the environment. But the canonical use case is to run it as a service that does something specific. In this case this means only **one (base) environment** per docker image. But then why spent so much effort using mambas envs if we can use only the base one? Convenience and speed mostly and getting the right packages and version, if you want to be really punctual you can use conda-lock files. Also your development env.yml(you don't install everythign in "base" right? RIGHT?) is directly usable for the docker, meaning you would get the same results as per dev/experimentation. 
 
+And that's it now you can use micromamba with docker with GPU.
 I have always been using conda/mamba for envs and packages and my experience has been positive espeacially when something compiled is needed as pytorch-cuda version. 
+
+
