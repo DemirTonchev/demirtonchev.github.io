@@ -32,7 +32,10 @@ layout: base
           </a>
         </h3>
         {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
+            {{ post.excerpt }}
+                {% if post.excerpt %}
+                    <p><a href="{{ post.url }}">(more...)</a></p>
+                {% endif %}
         {%- endif -%}
       </li>
       {%- endfor -%}
