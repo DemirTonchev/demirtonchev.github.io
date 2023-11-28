@@ -91,7 +91,7 @@ docker run -rm nocuda
 ```
 and do_stuff.py will run, my "do_stuff.py" just prints if CUDA is available for this container the answer is False. 
 
-Now if you want to do something more complicated or need functionallity from other base images, for example you want to run the fanciest LLMs in a container with GPU and brag about it on meetups or even better put a "Generative AI expert" on your Linkedin. The trick is to use the micro snake again but with the addition of nvidia image with needed drivers. If running on VM the host machine needs to have same NVIDIA drivers and NVIDIA Container Toolkit. 
+Now if you want to do something more complicated or need functionallity from other base images(for example you want to run the fanciest LLMs in a container with GPU and brag about it on meetups or even better put a "Generative AI expert" on your Linkedin) the trick is to use the micro snake again but with the addition of nvidia image with needed drivers. If running on VM the host machine needs to have same NVIDIA drivers and NVIDIA Container Toolkit. 
 
 Now following the great instruction on [micromamba docs](https://micromamba-docker.readthedocs.io/en/latest/advanced_usage.html#adding-micromamba-to-an-existing-docker-image) we arive at:
 
