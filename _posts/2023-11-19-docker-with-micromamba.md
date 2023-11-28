@@ -147,7 +147,7 @@ docker run --gpus all -t yescuda
 ```
 After building and running the container we should get "Cuda available", and thus we can use the GPU. Now you just need to replace this do_stuff with your do_stuff.
 
-If you want to use this docker with `exec` command then you will need to activate the environment. But the canonical use case is to run it as a service that does something specific. In this case this means only **one (base) environment** per docker image. But then why spent so much effort using mambas envs if we can use only the base one? Convenience and speed mostly and getting the right packages and version, if you want to be really punctual you can use conda-lock files. Also your development env.yml(you don't install everythign in "base" right? RIGHT?) is directly usable for the docker, meaning you would get the same results as per dev/experimentation. 
+If you want to use this docker with `exec` command then you will need to activate the environment. But the canonical use case is to run it as a service that does something specific. In this case this means only **one (base) environment** per docker image. But then why spent so much effort using mambas envs if we can use only the base one? Convenience and speed mostly and getting the right packages and version, if you want to be really punctual you can use conda-lock files. Also your development `env.yml`(you don't install everythign in "base" right? RIGHT?) is directly usable for the docker, meaning you would get the same results as per dev/experimentation. 
 
 And that's it now you can use micromamba with docker with GPU. No tears as promised!
 
