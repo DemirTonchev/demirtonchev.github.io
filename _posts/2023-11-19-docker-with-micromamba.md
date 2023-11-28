@@ -98,6 +98,7 @@ Now following the great instruction on [micromamba docs](https://micromamba-dock
 FROM mambaorg/micromamba:latest as micromamba
 
 # Use NVIDIA drivers image as the base image
+# careful about the driver version
 FROM nvcr.io/nvidia/driver:535.54.03-ubuntu22.04
 
 RUN apt-get update -y
@@ -148,7 +149,10 @@ After building and running the container we should get "Cuda available", and thu
 
 If you want to use this docker with `exec` command then you will need to activate the environment. But the canonical use case is to run it as a service that does something specific. In this case this means only **one (base) environment** per docker image. But then why spent so much effort using mambas envs if we can use only the base one? Convenience and speed mostly and getting the right packages and version, if you want to be really punctual you can use conda-lock files. Also your development env.yml(you don't install everythign in "base" right? RIGHT?) is directly usable for the docker, meaning you would get the same results as per dev/experimentation. 
 
-And that's it now you can use micromamba with docker with GPU.
-I have always been using conda/mamba for envs and packages and my experience has been positive espeacially when something compiled is needed as pytorch-cuda version. 
+And that's it now you can use micromamba with docker with GPU. No tears as promised!
+
+
+<sub> PS.
+If you wonder that to do next check this envelope problem for fun - [https://en.wikipedia.org/wiki/Two_envelopes_problem](https://en.wikipedia.org/wiki/Two_envelopes_problem) </sub>
 
 
