@@ -21,10 +21,9 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-future: true
+future: false
 
 excerpt_separator: <!--more-->
 
 social_links:
   - { platform: github,         user_url: "https://github.com/DemirTonchev" }
-#  - { platform: linkedin,       user_url: "https://www.linkedin.com/in/jekyll" }
